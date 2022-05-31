@@ -8,19 +8,19 @@
     "net6.0": []
   },
   "packageFolders": {
-    "C:\\Users\\User\\.nuget\\packages\\": {}
+    "C:\\Users\\Phi Long\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Phi Long\\Downloads\\assessment3\\assessment3\\Assessment3\\Assessment3\\Assessment3.csproj",
+      "projectUniqueName": "C:\\Users\\Phi Long\\Desktop\\CAB301\\ProjectPhase3\\Assessment3\\Assessment3.csproj",
       "projectName": "Assessment3",
-      "projectPath": "C:\\Users\\Phi Long\\Downloads\\assessment3\\assessment3\\Assessment3\\Assessment3\\Assessment3.csproj",
+      "projectPath": "C:\\Users\\Phi Long\\Desktop\\CAB301\\ProjectPhase3\\Assessment3\\Assessment3.csproj",
       "packagesPath": "C:\\Users\\Phi Long\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Phi Long\\Downloads\\assessment3\\assessment3\\Assessment3\\Assessment3\\obj\\",
+      "outputPath": "C:\\Users\\Phi Long\\Desktop\\CAB301\\ProjectPhase3\\Assessment3\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Phi Long\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
