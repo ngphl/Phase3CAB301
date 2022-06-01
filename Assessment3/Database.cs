@@ -15,30 +15,6 @@ namespace Assessment3
         public MemberCollection Members { get { return members; } }
         public Database(MovieCollection movies,MemberCollection members) {this.movies = movies; this.members = members; }
 
-        //Helper function
-        private void displayInfo(Movie movie)
-        {
-            Console.WriteLine("-------------Movie Detail-------------");
-            Console.WriteLine("Title: " + movie.Title);
-            Console.WriteLine("Genre: " + movie.Genre);
-            Console.WriteLine("Classification: " + movie.Classification);
-            Console.WriteLine("Duration: " + movie.Duration);
-            Console.WriteLine("Available Copies: " + movie.AvailableCopies);
-            Console.WriteLine("Total Copies: " + movie.TotalCopies);
-            Console.WriteLine("---------------------------------------");
-        }
-
-        //Helper function
-        public void displayAllMovie()
-        {
-            IMovie[] availableMovie = Movies.ToArray();
-            Console.Clear();
-            Console.WriteLine("All Movie in Library:");
-            foreach (Movie movie in availableMovie)
-            {
-                displayInfo(movie);
-            }
-        }
 
         //Helper function
         public void displayAllMember()
@@ -59,6 +35,50 @@ namespace Assessment3
             Console.WriteLine("---------------------------------------");
         }
 
+
+        //Display Info of a single movie 
+        private void displayInfo(Movie movie)
+        {
+            Console.WriteLine("-------------Movie Detail-------------");
+            Console.WriteLine("Title: " + movie.Title);
+            Console.WriteLine("Genre: " + movie.Genre);
+            Console.WriteLine("Classification: " + movie.Classification);
+            Console.WriteLine("Duration: " + movie.Duration);
+            Console.WriteLine("Available Copies: " + movie.AvailableCopies);
+            Console.WriteLine("Total Copies: " + movie.TotalCopies);
+            Console.WriteLine("---------------------------------------");
+        }
+
+        //Find and display movie by title
+        public void displayByTitle()
+        {
+            Console.Clear();
+            Console.WriteLine("Movie Name?");
+            string title = Console.ReadLine();
+            Movie movie = (Movie)movies.Search(title);
+            if (movie != null)
+            {
+                displayInfo(movie);
+            }
+            else
+            {
+                Console.Clear();
+                Console.WriteLine("Movie not found");
+            }
+            
+        }
+
+        //Display all Movie info
+        public void displayAllMovie()
+        {
+            IMovie[] availableMovie = movies.ToArray();
+            Console.Clear();
+            Console.WriteLine("All Movie in Library:");
+            foreach (Movie movie in availableMovie)
+            {
+                displayInfo(movie);
+            }
+        }
         //Remove DvDs function
         public void RemoveDvD()
         {
@@ -66,7 +86,7 @@ namespace Assessment3
             //Choose movie title 
             Console.WriteLine("Title of Movie: ");
             string title = Console.ReadLine();
-            Movie movie = (Movie)Movies.Search(title);
+            Movie movie = (Movie)movies.Search(title);
             if (movie != null)
             {
                 //CHOOSE AMOUNT TO REMOVE
@@ -285,6 +305,7 @@ namespace Assessment3
             }         
         }
 
+        //Register a member 
         public void RegisterMember()
         {
             //ASK FOR FIRST & LAST NAME
@@ -360,6 +381,7 @@ namespace Assessment3
             }           
         }
 
+        //Find a member contact number
         public void FindNumber()
         {
             Console.Clear();
@@ -384,6 +406,64 @@ namespace Assessment3
             }
         }
 
+        //Borrow a DVD
+        public void BorrowDVD(Member member)
+        {
+            Console.Clear();
+            //Check if member already borrow up to 5 DVD
+            if (member.Borrowing.Number < 5)
+            {
+                displayAllMovie();
+                Console.WriteLine();
+                Console.WriteLine("Input movie title to borrow: ");
+                string title = Console.ReadLine();
+                Movie movieBorrow = (Movie)movies.Search(title);
+                if (movieBorrow != null)
+                {
+                    bool canBorrow = movieBorrow.AddBorrower(member);
+                    if (canBorrow)
+                    {
+                        //Create a copy of the movie but only include the title for sake of simplicity
+                        Movie toAdd = new Movie(movieBorrow.Title);
+                        member.Borrowing.Insert(toAdd);
+                        Console.Clear();
+                        Console.WriteLine("Borrow successfully.");
+                    }
+                    else
+                    {
+                        Console.Clear();
+                        Console.WriteLine("Either there's no more available copies or the user had already borrowed 1 of this DVD");
+                    }                  
+                }
+                else
+                {
+                    Console.Clear();
+                    Console.WriteLine("Movie title not found, back to menu...");
+                }
+            }
+            else
+            {
+                Console.WriteLine("You already have 5 DVD borrowed.");
+            }
+            
+        }
+
+
+
+        //List current borrowed movie by user
+        public void showBorrowed(Member member)
+        {
+            Console.Clear();
+            IMovie[] array = member.Borrowing.ToArray();
+            Console.WriteLine("Member currently borrow these DVD:");
+            Console.WriteLine();
+            Console.WriteLine("-------------Borrowed Detail-------------");
+            foreach (Movie movie in array)
+            {
+                Console.WriteLine("Title: " + movie.Title);
+            }
+            Console.WriteLine("-----------------------------------------");
+        }
 
 
 

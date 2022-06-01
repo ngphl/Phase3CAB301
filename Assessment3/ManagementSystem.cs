@@ -111,11 +111,10 @@ namespace Assessment3
         private void memberMenu(Member member)
         {
             while (true)
-            {
-                
-                Console.WriteLine("Login as " + member.FirstName + " " + member.LastName);
+            {        
                 Console.WriteLine();
                 Console.WriteLine("=========================Member Menu==========================");
+                Console.WriteLine("Login as " + member.FirstName + " " + member.LastName);
                 Console.WriteLine();
                 Console.WriteLine("1. Browse all the movies");
                 Console.WriteLine("2. Display all the information about a movie, given the title of the movie");
@@ -137,18 +136,15 @@ namespace Assessment3
                     {
                         case 1:
                             //Browse all movies
-                            Console.Clear();
-                            Console.WriteLine("Browse all movie");
+                            libraryData.displayAllMovie();
                             break;
                         case 2:
                             //Display all given title
-                            Console.Clear();
-                            Console.WriteLine("Display all given title");
+                            libraryData.displayByTitle();
                             break;
                         case 3:
                             //Borrow a movie
-                            Console.Clear();
-                            Console.WriteLine("Borrow");
+                            libraryData.BorrowDVD(member);
                             break;
                         case 4:
                             //Return
@@ -156,9 +152,7 @@ namespace Assessment3
                             Console.WriteLine("Return");
                             break;
                         case 5:
-                            //Display all given title
-                            Console.Clear();
-                            Console.WriteLine("List");
+                            libraryData.showBorrowed(member);
                             break;
                         case 6:
                             Console.Clear();

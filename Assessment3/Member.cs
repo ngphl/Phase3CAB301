@@ -10,6 +10,9 @@ class Member : IMember
     private string contactNumber;
     private string pin;
 
+    //Collection of DvD/Movie being borrowed by this member - 5 Max size
+    private MovieCollection borrowing = new MovieCollection();
+
 
     // Properties
     public string FirstName { get { return firstName; } set { firstName = value; } }  // Get and set the first name of this member
@@ -17,7 +20,7 @@ class Member : IMember
     public string ContactNumber { get { return contactNumber; } set { contactNumber = value; } }  // Get and set the contact number of this member
     public string Pin { get { return pin; } set { pin = value; } }// Get and set a pin number
 
-
+    public MovieCollection Borrowing { get { return borrowing; } set { borrowing = value; } }
 
     // Constructor with member's first name and lastname
     public Member(string firstName, string lastName)
