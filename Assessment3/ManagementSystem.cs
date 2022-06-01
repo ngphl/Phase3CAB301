@@ -50,13 +50,11 @@ namespace Assessment3
                     {
                         case 1:
                             //GO STAFF LOGIN
-                            Console.Clear();
                             staffLogin();
                             break;                          
                         case 2:
-                            //GO MEMBER LOGIN
-                            Console.Clear();
-                            Console.WriteLine("Member Login Success");                           
+                            //GO MEMBER LOGIN                         
+                            memberLogin();
                             break;
                         case 0:
                             Environment.Exit(0);                        
@@ -75,9 +73,122 @@ namespace Assessment3
             }
         }
 
+        //LOG IN GUI FOR MEMBER
+        private void memberLogin()
+        {
+            Console.Clear();
+            //Check First & Last Name
+            Console.WriteLine("First Name: ");
+            string first = Console.ReadLine();
+            Console.WriteLine("Last Name: ");
+            string last = Console.ReadLine();
+            Member checkMember = new Member(first, last);
+            //Check if its in data
+            checkMember = (Member)libraryData.Members.Find(checkMember);
+            if (checkMember != null)
+            {
+                Console.WriteLine("Password: ");
+                string pass = Console.ReadLine();
+                if (pass == checkMember.Pin)
+                {
+                    Console.Clear();
+                    memberMenu(checkMember);
+                }
+                else
+                {
+                    Console.Clear();
+                    Console.WriteLine("Incorrect Password, back to main menu...");
+                }
+            }
+            else
+            {
+                Console.Clear();
+                Console.WriteLine("User not found, back to main menu...");
+            }
+
+        }
+
+        private void memberMenu(Member member)
+        {
+            while (true)
+            {
+                
+                Console.WriteLine("Login as " + member.FirstName + " " + member.LastName);
+                Console.WriteLine();
+                Console.WriteLine("=========================Member Menu==========================");
+                Console.WriteLine();
+                Console.WriteLine("1. Browse all the movies");
+                Console.WriteLine("2. Display all the information about a movie, given the title of the movie");
+                Console.WriteLine("3. Borrow a movie DVD");
+                Console.WriteLine("4. Return a movie DVD");
+                Console.WriteLine("5. List current borrowing movies");
+                Console.WriteLine("6. Display the top 3 movies rented by the members");
+                Console.WriteLine("0. Return to the main menu");
+                Console.WriteLine();
+                Console.WriteLine();
+                Console.WriteLine("Enter your choice ==> (1/2/3/4/5/6/0)");
+                //CHECK IF INPUT IS AN INTEGER
+                string input = Console.ReadLine();
+                bool option = int.TryParse(input, out int number);
+                //IF ITS A NUMBER                
+                if (option)
+                {
+                    switch (number)
+                    {
+                        case 1:
+                            //Browse all movies
+                            Console.Clear();
+                            Console.WriteLine("Browse all movie");
+                            break;
+                        case 2:
+                            //Display all given title
+                            Console.Clear();
+                            Console.WriteLine("Display all given title");
+                            break;
+                        case 3:
+                            //Borrow a movie
+                            Console.Clear();
+                            Console.WriteLine("Borrow");
+                            break;
+                        case 4:
+                            //Return
+                            Console.Clear();
+                            Console.WriteLine("Return");
+                            break;
+                        case 5:
+                            //Display all given title
+                            Console.Clear();
+                            Console.WriteLine("List");
+                            break;
+                        case 6:
+                            Console.Clear();
+                            Console.WriteLine("Display top 3");
+                            break;
+                        //REMOVE CASE 7 AFTER FINISH
+                        case 0:
+                            Console.Clear();
+                            mainMenu();
+                            break;
+                        default:
+                            Console.Clear();
+                            Console.WriteLine("Option not available, try again.");
+                            break;
+                    }
+                }
+                else
+                {
+                    Console.Clear();
+                    Console.WriteLine("Option not available, try again.");
+                }
+            }
+            
+        }
+
+
         //LOG IN GUI FOR STAFF
         private void staffLogin()
         {
+            Console.Clear();
             Console.WriteLine("Username: ");
             string username = Console.ReadLine();
             Console.WriteLine("Password: ");
@@ -127,15 +238,15 @@ namespace Assessment3
                     { 
                         case 1:
                             //Add new DVD
-                            LibraryData.AddDvD();
+                            libraryData.AddDvD();
                             break;
                         case 2:
                             //Remove DVD
-                            LibraryData.RemoveDvD();
+                            libraryData.RemoveDvD();
                             break;
                         case 3:
                             //Register new member
-                            LibraryData.RegisterMember();
+                            libraryData.RegisterMember();
                             break;
                         case 4:
                             Console.Clear();
@@ -143,7 +254,7 @@ namespace Assessment3
                             break;
                         case 5:
                             //Find Member's phone number
-                            LibraryData.FindNumber();
+                            libraryData.FindNumber();
                             break;
                         case 6:
                             Console.Clear();
@@ -152,11 +263,11 @@ namespace Assessment3
                         //REMOVE CASE 7 AFTER FINISH
                         case 7:
                             Console.Clear();
-                            LibraryData.displayAllMovie();
+                            libraryData.displayAllMovie();
                             break;
                         case 8:
                             Console.Clear();
-                            LibraryData.displayAllMember();
+                            libraryData.displayAllMember();
                             break;
                         case 0:
                             Console.Clear();

@@ -369,6 +369,7 @@ namespace Assessment3
             Console.WriteLine("Last Name?");
             string last = Console.ReadLine();
             Member toFind = new Member(first, last);
+            //FIND THE NAME
             toFind = (Member)members.Find(toFind);
             if (toFind == null)
             {
