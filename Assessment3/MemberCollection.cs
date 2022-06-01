@@ -40,6 +40,8 @@ class MemberCollection : IMemberCollection
         }
     }
 
+    
+
     // check if this member collection is full
     // Pre-condition: nil
     // Post-condition: return ture if this member collection is full; otherwise return false.
@@ -219,5 +221,36 @@ class MemberCollection : IMemberCollection
         return s;
     }
 
-
+    // Find a given member in this member collection
+    // Pre-condition: nil
+    // Post-condition: return the reference of the member object in the member collection, if this member is in the member collection; return null otherwise; member collection remains unchanged
+    public IMember Find(IMember member)
+    {
+        int lower = 0;
+        int upper = count - 1;
+        while (lower <= upper)
+        {
+            int index = (lower + upper) / 2;
+            if (members[index] != null)
+            {
+                if (members[index].CompareTo((Member)member) == 0)
+                {
+                    return members[index];
+                }
+                else if (members[index].CompareTo((Member)member) < 0)
+                {
+                    lower = index + 1;
+                }
+                else
+                {
+                    upper = index - 1;
+                }
+            }
+            else
+            {
+                return null;
+            }
+        }
+        return null;
+    }
 }

@@ -142,8 +142,8 @@ namespace Assessment3
                             Console.WriteLine("Remove register member");
                             break;
                         case 5:
-                            Console.Clear();
-                            Console.WriteLine("Display member info");
+                            //Find Member's phone number
+                            LibraryData.FindNumber();
                             break;
                         case 6:
                             Console.Clear();

@@ -359,5 +359,32 @@ namespace Assessment3
                 }
             }           
         }
+
+        public void FindNumber()
+        {
+            Console.Clear();
+            //Ask for name
+            Console.WriteLine("First Name?");
+            string first = Console.ReadLine();
+            Console.WriteLine("Last Name?");
+            string last = Console.ReadLine();
+            Member toFind = new Member(first, last);
+            toFind = (Member)members.Find(toFind);
+            if (toFind == null)
+            {
+                Console.Clear();
+                Console.WriteLine("Can not find member with the name, back to menu...");
+            }
+            else
+            {
+                Console.Clear();
+                string number = toFind.ContactNumber;
+                Console.WriteLine("Contact Number for the input name: " + number);
+            }
+        }
+
+
+
+
     }
 }
