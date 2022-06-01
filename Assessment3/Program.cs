@@ -6,8 +6,9 @@ using Assessment3;
 MovieCollection MovieCollection = new MovieCollection();
 //Initialize Empty Member Collection with 999999 Capacity
 MemberCollection MemberCollection = new MemberCollection(99999);
-//Initialize System and Main Menu
+//Initialize System 
 ManagementSystem system = new ManagementSystem(MovieCollection, MemberCollection);
 
-
+//Start the system and menu
+system.startUp();
 

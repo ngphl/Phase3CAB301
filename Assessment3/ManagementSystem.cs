@@ -14,11 +14,11 @@ namespace Assessment3
         public ManagementSystem(MovieCollection movies, MemberCollection members)
         {
             libraryData = new Database(movies,members);
-            startUp();
+            
         }
 
         //START OF THE MENU
-        private void startUp()
+        public void startUp()
         {
             Console.WriteLine("=============================================================");
             Console.WriteLine("Welcome to Community Library Movie DVD Management System");
@@ -115,8 +115,7 @@ namespace Assessment3
                 //CHECK IF INPUT IS AN INTEGER
                 string input = Console.ReadLine();
                 bool option = int.TryParse(input, out int number);
-                //IF ITS A NUMBER
-                
+                //IF ITS A NUMBER                
                 if (option)
                 {
                     switch (number)
@@ -129,7 +128,7 @@ namespace Assessment3
                         case 2:
                             //Remove DVD
                             Console.Clear();
-                            Console.WriteLine("Remove new DVD");
+                            LibraryData.RemoveDvD();
                             break;
                         case 3:
                             //Register new member

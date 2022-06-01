@@ -15,6 +15,86 @@ namespace Assessment3
         public MemberCollection Members { get { return members; } }
         public Database(MovieCollection movies,MemberCollection members) {this.movies = movies; this.members = members; }
 
+        //Helper function
+        private void displayInfo(Movie movie)
+        {
+            Console.WriteLine("-------------Movie Detail-------------");
+            Console.WriteLine("Title: " + movie.Title);
+            Console.WriteLine("Genre: " + movie.Genre);
+            Console.WriteLine("Classification: " + movie.Classification);
+            Console.WriteLine("Duration: " + movie.Duration);
+            Console.WriteLine("Available Copies: " + movie.AvailableCopies);
+            Console.WriteLine("Total Copies: " + movie.TotalCopies);
+            Console.WriteLine("---------------------------------------");
+        }
+
+
+        public void RemoveDvD()
+        {
+            //Choose movie title 
+            Console.WriteLine("Title of Movie: ");
+            string title = Console.ReadLine();
+            Movie movie = (Movie)Movies.Search(title);
+            if (movie != null)
+            {
+                //CHOOSE AMOUNT TO REMOVE
+                Console.Clear();
+                displayInfo(movie);
+                Console.WriteLine("NOTE: Can only remove amount up to available copies in library");
+                while (true)
+                {
+                    Console.WriteLine();
+                    Console.WriteLine("Number of DVD to remove:");
+                    string toRemove = Console.ReadLine();
+                    bool option = int.TryParse(toRemove, out int numberToRemove);
+                    if (option)
+                    {
+                        //If number to remove exceed available copies in library
+                        if (numberToRemove > movie.AvailableCopies)
+                        {
+                            //Do nothing
+                            Console.Clear();
+                            Console.WriteLine("Number of DvD to remove exceed number of available copies ("+movie.AvailableCopies+"), try again...");
+                        }
+                        else if (numberToRemove < 0)
+                        {
+                            Console.Clear();
+                            Console.WriteLine("Do not enter negative number, try again...");
+                        }
+                        else //Number of DvD to remove Does not exceed available copies (CAN ONLY REMOVE THOSE IN LIBRARY)
+                        {
+                            Console.Clear();
+                            movie.AvailableCopies -= numberToRemove;
+                            movie.TotalCopies -= numberToRemove;
+                            Console.WriteLine("Removed " + numberToRemove + " DvD from " + movie.Title + "");
+                            if (movie.TotalCopies == 0)
+                            {
+                                movies.Delete(movie);
+                                Console.WriteLine("No more copies available, remove the movie " + movie.Title + " from library...");
+                            }
+                            else
+                            {
+                                Console.WriteLine("Update!");
+                                displayInfo(movie);
+                            }
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        Console.Clear();
+                        Console.WriteLine("Invalid input, try again...");
+                    }
+                }        
+            }
+            else
+            {
+                Console.Clear();
+                Console.WriteLine("Movie not found, return to menu...");
+            }
+        }
+
+
         public void AddDvD()
         {    
             //Choose movie title 
@@ -117,7 +197,7 @@ namespace Assessment3
                 while(true)
                 {
                     //OFFICIALLY ADD IN THE MOVIE - TODO 
-                    Console.WriteLine();
+                    Console.Clear();
                     Console.WriteLine("Verify Movie Detail");
                     Console.WriteLine("Title: " + title + "");
                     Console.WriteLine("Genre: " + genreChoose + "");
@@ -136,16 +216,18 @@ namespace Assessment3
                         {
                             Console.Clear();
                             Console.WriteLine("Movie successfully added, back to menu...");
+                            displayInfo(movie);
                             break;
                         }
                         else
                         {
                             movie = (Movie)movies.Search(title);
-                            movie.TotalCopies = movie.TotalCopies+numberToAdd;
-                            movie.AvailableCopies = movie.AvailableCopies + numberToAdd;
+                            movie.TotalCopies += numberToAdd;
+                            movie.AvailableCopies += numberToAdd;
                             Console.Clear();
                             Console.WriteLine("Movies already in library, added " + numberToAdd + " DvD instead");
-                            Console.WriteLine("Detail of the Movie is now: " + movie.ToString());
+                            Console.WriteLine("Update!");
+                            displayInfo(movie);
                             break;
                         }
                     }
@@ -167,8 +249,7 @@ namespace Assessment3
             {
                 Console.Clear();
                 Console.WriteLine("Invalid selection, back to menu...");
-            }
-            
+            }         
         }
     }
 }
