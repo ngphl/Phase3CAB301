@@ -28,9 +28,41 @@ namespace Assessment3
             Console.WriteLine("---------------------------------------");
         }
 
+        //Helper function
+        public void displayAllMovie()
+        {
+            IMovie[] availableMovie = Movies.ToArray();
+            Console.Clear();
+            Console.WriteLine("All Movie in Library:");
+            foreach (Movie movie in availableMovie)
+            {
+                displayInfo(movie);
+            }
+        }
 
+        //Helper function
+        public void displayAllMember()
+        {
+            Console.WriteLine("-------------All Member Detail-------------");
+            Console.WriteLine(Members.ToString());
+            Console.WriteLine("-------------------------------------------");
+        }
+
+        //Helper function
+        private void displayMemberInfo(Member member)
+        {
+            Console.WriteLine("-------------Member Detail-------------");
+            Console.WriteLine("First Name: " + member.FirstName);
+            Console.WriteLine("Last Name: " + member.LastName);
+            Console.WriteLine("Phone Number: " + member.ContactNumber);
+            Console.WriteLine("PIN: " + member.Pin);
+            Console.WriteLine("---------------------------------------");
+        }
+
+        //Remove DvDs function
         public void RemoveDvD()
         {
+            Console.Clear();
             //Choose movie title 
             Console.WriteLine("Title of Movie: ");
             string title = Console.ReadLine();
@@ -94,9 +126,10 @@ namespace Assessment3
             }
         }
 
-
+        //Add DvDs function
         public void AddDvD()
-        {    
+        {
+            Console.Clear();
             //Choose movie title 
             Console.WriteLine("Title of Movie: ");
             string title = Console.ReadLine();
@@ -196,7 +229,7 @@ namespace Assessment3
                 
                 while(true)
                 {
-                    //OFFICIALLY ADD IN THE MOVIE - TODO 
+                    //OFFICIALLY ADD IN THE MOVIE 
                     Console.Clear();
                     Console.WriteLine("Verify Movie Detail");
                     Console.WriteLine("Title: " + title + "");
@@ -250,6 +283,81 @@ namespace Assessment3
                 Console.Clear();
                 Console.WriteLine("Invalid selection, back to menu...");
             }         
+        }
+
+        public void RegisterMember()
+        {
+            //ASK FOR FIRST & LAST NAME
+            Console.Clear();
+            Console.WriteLine("NOTE: Name is Case sensitive (e.g John is different from john), please add with caution.");
+            Console.WriteLine("First Name?");
+            string first = Console.ReadLine();
+            Console.WriteLine("Last Name?");
+            string last = Console.ReadLine();
+            Member onlyName = new Member(first, last);
+            //CHECK IF FIRST & LAST NAME ALREADY EXIST
+            if (Members.Search(onlyName))
+            {
+                Console.Clear();
+                Console.WriteLine("There is already member with the same name, back to menu...");
+            }
+            else
+            {
+                //ASK FOR PHONE NUMBER
+                Console.WriteLine("Phone Number?");
+                string number = Console.ReadLine();
+                bool validNumber = IMember.IsValidContactNumber(number);
+                if (validNumber)
+                {
+                    //ASK FOR PIN
+                    Console.WriteLine("Pin?");
+                    string pin = Console.ReadLine();
+                    bool validPin = IMember.IsValidPin(pin);
+                    if (validPin)
+                    {
+                        //VERIFY DETAIL AND ADD MEMBER
+                        Member member = new Member(first, last, number, pin);
+                        while(true)
+                        {
+                            Console.Clear();
+                            Console.WriteLine("Verify Member Detail");
+                            displayMemberInfo(member);
+                            Console.WriteLine("\nRegister this member? (Y/N)");
+                            string yesNo = Console.ReadLine();
+                            yesNo = yesNo.ToUpper();
+                            if (yesNo == "Y")
+                            {
+                                Members.Add(member);
+                                Console.Clear();
+                                Console.WriteLine("Successfully Register member with following detail:");
+                                displayMemberInfo(member);
+                                break;
+                            }
+                            else if (yesNo == "N")
+                            {
+                                Console.Clear();
+                                Console.WriteLine("Back to menu...");
+                                break;
+                            }
+                            else
+                            {
+                                Console.Clear();
+                                Console.WriteLine("Invalid option, try again");
+                            }
+                        }                    
+                    }
+                    else
+                    {
+                        Console.Clear();
+                        Console.WriteLine("Invalid PIN, back to menu...");
+                    }
+                }
+                else
+                {
+                    Console.Clear();
+                    Console.WriteLine("Invalid Phone Number, back to menu...");
+                }
+            }           
         }
     }
 }

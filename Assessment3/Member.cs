@@ -65,7 +65,8 @@ class Member : IMember
     // Post-condition: a  string containing the full name of this member is returned
     public string ToString()
     {
-        return lastName + ", " + firstName;
+        //ADDED CONTACT NUMBER AND PIN FOR TESTING - REMOVE AFTER FINISH 
+        return lastName + ", " + firstName + ", " + contactNumber + ", " + pin;
     }
 }
 

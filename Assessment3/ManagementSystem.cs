@@ -108,6 +108,11 @@ namespace Assessment3
                 Console.WriteLine("4. Remove a registered member from the system");
                 Console.WriteLine("5. Display a member's contact phone number, given the member's name");
                 Console.WriteLine("6. Display all members who are currently renting a particular movie");
+                //HELPER FUNCTION - REMOVE AFTER FINISH
+                Console.WriteLine("7. (DEBUG) DISPLAY ALL MOVIES - REMOVE AFTER FINISH PROJECT");
+                Console.WriteLine("8. (DEBUG) DISPLAY ALL MEMBERS - REMOVE AFTER FINISH PROJECT");
+                //HELPER FUNCTION - REMOVE AFTER FINISH
+
                 Console.WriteLine("0. Return to the main menu");
                 Console.WriteLine();
                 Console.WriteLine();
@@ -122,18 +127,15 @@ namespace Assessment3
                     { 
                         case 1:
                             //Add new DVD
-                            Console.Clear();
                             LibraryData.AddDvD();
                             break;
                         case 2:
                             //Remove DVD
-                            Console.Clear();
                             LibraryData.RemoveDvD();
                             break;
                         case 3:
                             //Register new member
-                            Console.Clear();
-                            Console.WriteLine("Register new member");
+                            LibraryData.RegisterMember();
                             break;
                         case 4:
                             Console.Clear();
@@ -146,6 +148,15 @@ namespace Assessment3
                         case 6:
                             Console.Clear();
                             Console.WriteLine("Display all current rent member");
+                            break;
+                        //REMOVE CASE 7 AFTER FINISH
+                        case 7:
+                            Console.Clear();
+                            LibraryData.displayAllMovie();
+                            break;
+                        case 8:
+                            Console.Clear();
+                            LibraryData.displayAllMember();
                             break;
                         case 0:
                             Console.Clear();
