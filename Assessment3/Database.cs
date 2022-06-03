@@ -449,7 +449,6 @@ namespace Assessment3
         }
 
 
-
         //List current borrowed movie by user
         public void showBorrowed(Member member)
         {
@@ -465,7 +464,26 @@ namespace Assessment3
             Console.WriteLine("-----------------------------------------");
         }
 
+        //Remove a registered member from the system
+        public void removeMember()
+        {
+            Console.WriteLine("First Name?");
+            string first = Console.ReadLine();
+            Console.WriteLine("Last Name?");
+            string last = Console.ReadLine();
+            Member toFind = new Member(first, last);
+            //FIND THE NAME
+            toFind = (Member)members.Find(toFind);
+            if (members.Find(toFind) != null)
+            {
+                members.Delete(toFind);
+            }
+            else
+            {
+                Console.WriteLine($"{first} {last} is not a registered member");
+            }
 
+        }
 
     }
 }

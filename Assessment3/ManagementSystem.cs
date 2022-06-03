@@ -244,7 +244,7 @@ namespace Assessment3
                             break;
                         case 4:
                             Console.Clear();
-                            Console.WriteLine("Remove register member");
+                            LibraryData.removeMember();                    
                             break;
                         case 5:
                             //Find Member's phone number

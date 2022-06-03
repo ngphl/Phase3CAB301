@@ -289,6 +289,7 @@ public class MovieCollection : IMovieCollection
 	public void Clear()
 	{
 		root = null;
+		count = 0;
 	}
 }
 
