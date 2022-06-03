@@ -467,6 +467,7 @@ namespace Assessment3
         //Remove a registered member from the system
         public void removeMember()
         {
+            int counter = 0;
             Console.WriteLine("First Name?");
             string first = Console.ReadLine();
             Console.WriteLine("Last Name?");
@@ -476,7 +477,22 @@ namespace Assessment3
             toFind = (Member)members.Find(toFind);
             if (members.Find(toFind) != null)
             {
-                members.Delete(toFind);
+                foreach(Movie movie in movies.ToArray())
+                {
+                    if (movie.Borrowers.Search(toFind))
+                    {
+                        counter++;
+                    }
+                }
+                if(counter == 0) 
+                {
+                    members.Delete(toFind); 
+                }
+                else
+                {
+                    Console.WriteLine("Member has DVD on loan and can't be removed");
+                }
+               
             }
             else
             {
