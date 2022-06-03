@@ -482,7 +482,32 @@ namespace Assessment3
             {
                 Console.WriteLine($"{first} {last} is not a registered member");
             }
+        }
 
+        //Display all borrowers of particular movie
+        public void displayBorrower() 
+        {
+            Console.WriteLine("Movie title?");
+            string title = Console.ReadLine();
+            Console.WriteLine("");
+            Movie toFind = new Movie(title);
+            //FIND THE MOVIE
+            toFind = (Movie)movies.Search(title);
+            if (toFind != null)
+            {
+                if (toFind.Borrowers.Number != 0)
+                {
+                    Console.WriteLine(toFind.Borrowers.ToString());
+                }
+                else
+                {
+                    Console.WriteLine("No member borrowed this movie");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Invalid movie title");
+            }
         }
 
     }

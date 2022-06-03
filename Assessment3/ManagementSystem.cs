@@ -252,7 +252,9 @@ namespace Assessment3
                             break;
                         case 6:
                             Console.Clear();
-                            Console.WriteLine("Display all current rent member");
+                            libraryData.displayAllMovie();
+                            Console.WriteLine("");                           
+                            libraryData.displayBorrower();
                             break;
                         //REMOVE CASE 7 AFTER FINISH
                         case 7:
