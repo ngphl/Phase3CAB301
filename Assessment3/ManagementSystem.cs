@@ -149,7 +149,7 @@ namespace Assessment3
                         case 4:
                             //Return
                             Console.Clear();
-                            Console.WriteLine("Return");
+                            libraryData.returnDVD(member);
                             break;
                         case 5:
                             libraryData.showBorrowed(member);
