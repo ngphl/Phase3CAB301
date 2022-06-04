@@ -561,11 +561,12 @@ namespace Assessment3
 
             Console.Clear();
             Console.WriteLine("All movies you are borrowing:");
+            Console.WriteLine("------------------------------");
             foreach (Movie movie in member.Borrowing.ToArray())
             {
-                displayInfo(movie);
+                Console.WriteLine("Title: " + movie.Title);
             }
-
+            Console.WriteLine("------------------------------");
 
         }
     }
