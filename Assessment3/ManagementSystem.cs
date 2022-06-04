@@ -149,7 +149,7 @@ namespace Assessment3
                         case 4:
                             //Return
                             Console.Clear();
-                            Console.WriteLine("Return");
+                            libraryData.returnDVD(member);
                             break;
                         case 5:
                             libraryData.showBorrowed(member);
@@ -244,7 +244,7 @@ namespace Assessment3
                             break;
                         case 4:
                             Console.Clear();
-                            Console.WriteLine("Remove register member");
+                            LibraryData.removeMember();                    
                             break;
                         case 5:
                             //Find Member's phone number
@@ -252,7 +252,9 @@ namespace Assessment3
                             break;
                         case 6:
                             Console.Clear();
-                            Console.WriteLine("Display all current rent member");
+                            libraryData.displayAllMovie();
+                            Console.WriteLine("");                           
+                            libraryData.displayBorrower();
                             break;
                         //REMOVE CASE 7 AFTER FINISH
                         case 7:

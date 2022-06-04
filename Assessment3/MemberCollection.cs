@@ -154,7 +154,6 @@ class MemberCollection : IMemberCollection
 
                 }
             count--;
-            Console.WriteLine("{0} is no longer a member", aMember.ToString());
         }
         else
         {
@@ -217,7 +216,7 @@ class MemberCollection : IMemberCollection
     {
         string s = "";
         for (int i = 0; i < count; i++)
-            s = s + members[i].ToString() + "\n";
+            s = (i + 1) + ")" +  " " + s + members[i].ToString() + "\n";
         return s;
     }
 

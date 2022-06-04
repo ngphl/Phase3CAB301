@@ -13,7 +13,7 @@ namespace Assessment3
 
         public MovieCollection Movies { get { return movies; } }
         public MemberCollection Members { get { return members; } }
-        public Database(MovieCollection movies,MemberCollection members) {this.movies = movies; this.members = members; }
+        public Database(MovieCollection movies, MemberCollection members) { this.movies = movies; this.members = members; }
 
 
         //Helper function
@@ -65,7 +65,7 @@ namespace Assessment3
                 Console.Clear();
                 Console.WriteLine("Movie not found");
             }
-            
+
         }
 
         //Display all Movie info
@@ -106,7 +106,7 @@ namespace Assessment3
                         {
                             //Do nothing
                             Console.Clear();
-                            Console.WriteLine("Number of DvD to remove exceed number of available copies ("+movie.AvailableCopies+"), try again...");
+                            Console.WriteLine("Number of DvD to remove exceed number of available copies (" + movie.AvailableCopies + "), try again...");
                         }
                         else if (numberToRemove < 0)
                         {
@@ -137,7 +137,7 @@ namespace Assessment3
                         Console.Clear();
                         Console.WriteLine("Invalid input, try again...");
                     }
-                }        
+                }
             }
             else
             {
@@ -172,7 +172,7 @@ namespace Assessment3
                 {
                     genreChoose = MovieGenre.Action;
                 }
-                else if(genreInt == 2)
+                else if (genreInt == 2)
                 {
                     genreChoose = MovieGenre.Comedy;
                 }
@@ -246,8 +246,8 @@ namespace Assessment3
                     break;
                 }
                 //CHOOSE NUMBER OF DVD TO ADD - END
-                
-                while(true)
+
+                while (true)
                 {
                     //OFFICIALLY ADD IN THE MOVIE 
                     Console.Clear();
@@ -263,7 +263,7 @@ namespace Assessment3
                     if (yesNo == "Y")
                     {
                         //Add
-                        Movie movie = new Movie(title,genreChoose,classification,durationInt,numberToAdd);
+                        Movie movie = new Movie(title, genreChoose, classification, durationInt, numberToAdd);
                         bool added = movies.Insert(movie);
                         if (added)
                         {
@@ -295,14 +295,14 @@ namespace Assessment3
                         Console.Clear();
                         Console.WriteLine("Invalid option, try again");
                     }
-                }            
-                break;              
-            } 
+                }
+                break;
+            }
             if (!option)
             {
                 Console.Clear();
                 Console.WriteLine("Invalid selection, back to menu...");
-            }         
+            }
         }
 
         //Register a member 
@@ -338,7 +338,7 @@ namespace Assessment3
                     {
                         //VERIFY DETAIL AND ADD MEMBER
                         Member member = new Member(first, last, number, pin);
-                        while(true)
+                        while (true)
                         {
                             Console.Clear();
                             Console.WriteLine("Verify Member Detail");
@@ -365,7 +365,7 @@ namespace Assessment3
                                 Console.Clear();
                                 Console.WriteLine("Invalid option, try again");
                             }
-                        }                    
+                        }
                     }
                     else
                     {
@@ -378,7 +378,7 @@ namespace Assessment3
                     Console.Clear();
                     Console.WriteLine("Invalid Phone Number, back to menu...");
                 }
-            }           
+            }
         }
 
         //Find a member contact number
@@ -433,7 +433,7 @@ namespace Assessment3
                     {
                         Console.Clear();
                         Console.WriteLine("Either there's no more available copies or the user had already borrowed 1 of this DVD");
-                    }                  
+                    }
                 }
                 else
                 {
@@ -445,9 +445,8 @@ namespace Assessment3
             {
                 Console.WriteLine("You already have 5 DVD borrowed.");
             }
-            
-        }
 
+        }
 
 
         //List current borrowed movie by user
@@ -465,7 +464,109 @@ namespace Assessment3
             Console.WriteLine("-----------------------------------------");
         }
 
+        //Remove a registered member from the system
+        public void removeMember()
+        {
+            Console.WriteLine("First Name?");
+            string first = Console.ReadLine();
+            Console.WriteLine("Last Name?");
+            string last = Console.ReadLine();
+            Member toFind = new Member(first, last);
+            //FIND THE NAME
+            toFind = (Member)members.Find(toFind);
+            if (toFind != null)
+            {
+                int counter = 0;
+                foreach (Movie movie in movies.ToArray())
+                {
+                    if (movie.Borrowers.Search(toFind) == true)
+                    {
+                        counter++;
+                        break;
+                    }
+                }
+                if (counter == 0)
+                {
+                    members.Delete(toFind);
+                }
+                else
+                {
+                    Console.WriteLine("Member has DVD on loan and can't be removed");
+                }
+
+            }
+            else
+            {
+                Console.WriteLine($"{first} {last} is not a registered member");
+            }
+        }
+
+        //Display all borrowers of particular movie
+        public void displayBorrower()
+        {
+            Console.WriteLine("Movie title?");
+            string title = Console.ReadLine();
+            Console.WriteLine("");
+            Movie toFind = new Movie(title);
+            //FIND THE MOVIE
+            toFind = (Movie)movies.Search(title);
+            if (toFind != null)
+            {
+                if (toFind.Borrowers.Number != 0)
+                {
+                    Console.WriteLine(toFind.Borrowers.ToString());
+                }
+                else
+                {
+                    Console.WriteLine("No member borrowed this movie");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Invalid movie title");
+            }
+        }
+
+        //Return a movie DVD to the community library
+        public void returnDVD(Member member)
+        {
+            displayBorrowedMovie(member);
+            Console.WriteLine("Movie title to return:");
+            string title = Console.ReadLine();
+            Console.WriteLine("");
+            Movie toFind = new Movie(title);
+            Movie temp = (Movie)movies.Search(title);
+            if (toFind != null)
+            {
+                
+                if (member.Borrowing.Delete(toFind) == true)
+                {
+                    temp.RemoveBorrower(member);
+                    Console.WriteLine($"{toFind.Title} has been returned");
+                }
+                else
+                {
+                    Console.WriteLine("Error returning movie");//for testing error delete when complete
+                }
+            }
+            else
+            {
+                Console.WriteLine($"You are not borrowing {toFind.Title}");
+            }
+        }
+
+        //Display all borrowed Movie info
+        public void displayBorrowedMovie(Member member)
+        {
+
+            Console.Clear();
+            Console.WriteLine("All movies you are borrowing:");
+            foreach (Movie movie in member.Borrowing.ToArray())
+            {
+                displayInfo(movie);
+            }
 
 
+        }
     }
 }
