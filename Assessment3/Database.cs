@@ -583,118 +583,40 @@ namespace Assessment3
             if (movies.Number > 0)
             {
                 IMovie[] arr = movies.ToArray();
-                IMovie first = null;
-                IMovie second = null;
-                IMovie third = null;
+                IMovie dummy = new Movie("None");
+                IMovie first = dummy;
+                IMovie second = dummy;
+                IMovie third = dummy;
                 //If nunmber of unique movies is more than 3
-                if (movies.Number >= 3)
+                for (int i = 0; i < arr.Length; i++)
                 {
-                    // All the if else below sort the first 3 movies in the array
-                    if (arr[0].NoBorrowings >= arr[1].NoBorrowings)
+                    if (arr[i].NoBorrowings >= first.NoBorrowings)
                     {
-                        if (arr[0].NoBorrowings >= arr[2].NoBorrowings)
-                        {
-                            first = arr[0];
-                            if (arr[1].NoBorrowings >= arr[2].NoBorrowings)
-                            {
-                                second = arr[1];
-                                third = arr[2];
-                            }
-                            else
-                            {
-                                second = arr[2];
-                                third = arr[1];
-                            }
-                        }
-                        else
-                        {
-                            second = arr[0];
-                            first = arr[2];
-                            third = arr[1];
-                        }
+                        third = second;
+                        second = first;
+                        first = arr[i];
                     }
-                    else if (arr[0].NoBorrowings <= arr[2].NoBorrowings)
+                    else if (arr[i].NoBorrowings >= second.NoBorrowings)
                     {
-                        third = arr[0];
-                        if (arr[1].NoBorrowings >= arr[2].NoBorrowings)
-                        {
-                            first = arr[1];
-                            second = arr[2];
-                        }
-                        else
-                        {
-                            second = arr[1];
-                            first = arr[2];
-                        }
+                        third = second;
+                        second = arr[i];
                     }
-                    else
+                    else if (arr[i].NoBorrowings >= third.NoBorrowings)
                     {
-                        second = arr[0];
-                        if (arr[1].NoBorrowings >= arr[2].NoBorrowings)
-                        {
-                            first = arr[1];
-                            third = arr[2];
-                        }
-                        else
-                        {
-                            first = arr[2];
-                            third = arr[1];
-                        }
-                    }
-                    //Check the rest of the array and assign the top 3 accordingly
-                    for (int i = 3; i < arr.Length; i++)
-                    {
-                        if (arr[i].NoBorrowings >= first.NoBorrowings)
-                        {
-                            third = second;
-                            second = first;
-                            first = arr[i];
-                        }
-                        else if (arr[i].NoBorrowings >= second.NoBorrowings)
-                        {
-                            third = second;
-                            second = arr[i];
-                        }
-                        else if (arr[i].NoBorrowings >= third.NoBorrowings)
-                        {
-                            third = arr[i];
-                        }
-                    }
-                }
-                else
-                {
-                    //If theres only 2 movies in library
-                    if (movies.Number == 2)
-                    {
-                        //Do stuff
-                        if (arr[0].NoBorrowings >= arr[1].NoBorrowings)
-                        {
-                            first = arr[0];
-                            second = arr[1];
-                        }
-                        else
-                        {
-                            first = arr[1];
-                            second = arr[0];
-                        }
-                    }
-                    //If theres only one
-                    else
-                    {
-                        first = arr[0];
+                        third = arr[i];
                     }
                 }
                 Console.Clear();
                 Console.WriteLine("-------------Top 3 Most Borrowed Movie-------------");
-                if (first != null)
+                if (first != dummy)
                 {
                     Console.WriteLine("1. " + first.Title + " , borrowed " + first.NoBorrowings + " times");
                 }
-                if (second != null)
+                if (second != dummy)
                 {
                     Console.WriteLine("2. " + second.Title + " , borrowed " + second.NoBorrowings + " times");
                 }
-                if (third != null)
+                if (third != dummy)
                 {
                     Console.WriteLine("3. " + third.Title + " , borrowed " + third.NoBorrowings + " times");
                 }                
