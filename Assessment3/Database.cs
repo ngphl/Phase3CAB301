@@ -583,9 +583,10 @@ namespace Assessment3
             if (movies.Number > 0)
             {
                 IMovie[] arr = movies.ToArray();
-                IMovie first = null;
-                IMovie second = null;
-                IMovie third = null;
+                IMovie dummy = new Movie("None");
+                IMovie first = dummy;
+                IMovie second = dummy;
+                IMovie third = dummy;
                 //If nunmber of unique movies is more than 3
                 for (int i = 0; i < arr.Length; i++)
                 {
@@ -607,15 +608,15 @@ namespace Assessment3
                 }
                 Console.Clear();
                 Console.WriteLine("-------------Top 3 Most Borrowed Movie-------------");
-                if (first != null)
+                if (first != dummy)
                 {
                     Console.WriteLine("1. " + first.Title + " , borrowed " + first.NoBorrowings + " times");
                 }
-                if (second != null)
+                if (second != dummy)
                 {
                     Console.WriteLine("2. " + second.Title + " , borrowed " + second.NoBorrowings + " times");
                 }
-                if (third != null)
+                if (third != dummy)
                 {
                     Console.WriteLine("3. " + third.Title + " , borrowed " + third.NoBorrowings + " times");
                 }                
