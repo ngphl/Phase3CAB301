@@ -85,6 +85,7 @@ namespace Assessment3
         public void RemoveDvD()
         {
             Console.Clear();
+            displayAllMovie();
             //Choose movie title 
             Console.WriteLine("Title of Movie: ");
             string title = Console.ReadLine();
@@ -315,8 +316,10 @@ namespace Assessment3
             Console.WriteLine("NOTE: Name is Case sensitive (e.g John is different from john), please add with caution.");
             Console.WriteLine("First Name?");
             string first = Console.ReadLine();
+            Console.WriteLine("");
             Console.WriteLine("Last Name?");
             string last = Console.ReadLine();
+            Console.WriteLine("");
             Member onlyName = new Member(first, last);
             //CHECK IF FIRST & LAST NAME ALREADY EXIST
             if (Members.Search(onlyName))
@@ -329,12 +332,14 @@ namespace Assessment3
                 //ASK FOR PHONE NUMBER
                 Console.WriteLine("Phone Number?");
                 string number = Console.ReadLine();
+                Console.WriteLine("");
                 bool validNumber = IMember.IsValidContactNumber(number);
                 if (validNumber)
                 {
                     //ASK FOR PIN
                     Console.WriteLine("Pin?");
                     string pin = Console.ReadLine();
+                    Console.WriteLine("");
                     bool validPin = IMember.IsValidPin(pin);
                     if (validPin)
                     {
@@ -387,6 +392,7 @@ namespace Assessment3
         public void FindNumber()
         {
             Console.Clear();
+            displayAllMember();
             //Ask for name
             Console.WriteLine("First Name?");
             string first = Console.ReadLine();
@@ -470,6 +476,7 @@ namespace Assessment3
         public void removeMember()
         {
             Console.Clear();
+            displayAllMember();
             Console.WriteLine("First Name?");
             string first = Console.ReadLine();
             Console.WriteLine("Last Name?");
