@@ -19,6 +19,7 @@ namespace Assessment3
         //Helper function
         public void displayAllMember()
         {
+            Console.Clear();
             Console.WriteLine("-------------All Member Detail-------------");
             Console.WriteLine(Members.ToString());
             Console.WriteLine("-------------------------------------------");
@@ -71,6 +72,7 @@ namespace Assessment3
         //Display all Movie info
         public void displayAllMovie()
         {
+            Console.Clear();
             IMovie[] availableMovie = movies.ToArray();
             Console.Clear();
             Console.WriteLine("All Movie in Library:");
@@ -467,6 +469,7 @@ namespace Assessment3
         //Remove a registered member from the system
         public void removeMember()
         {
+            Console.Clear();
             Console.WriteLine("First Name?");
             string first = Console.ReadLine();
             Console.WriteLine("Last Name?");
@@ -530,6 +533,7 @@ namespace Assessment3
         //Return a movie DVD to the community library
         public void returnDVD(Member member)
         {
+            Console.Clear();
             displayBorrowedMovie(member);
             Console.WriteLine("Movie title to return:");
             string title = Console.ReadLine();
@@ -542,15 +546,18 @@ namespace Assessment3
                 if (member.Borrowing.Delete(toFind) == true)
                 {
                     temp.RemoveBorrower(member);
+                    Console.Clear();
                     Console.WriteLine($"{toFind.Title} has been returned");
                 }
                 else
                 {
+                    Console.Clear();
                     Console.WriteLine("Error returning movie");//for testing error delete when complete
                 }
             }
             else
             {
+                Console.Clear();
                 Console.WriteLine($"You are not borrowing {toFind.Title}");
             }
         }
@@ -561,12 +568,143 @@ namespace Assessment3
 
             Console.Clear();
             Console.WriteLine("All movies you are borrowing:");
+            Console.WriteLine("------------------------------");
             foreach (Movie movie in member.Borrowing.ToArray())
             {
-                displayInfo(movie);
+                Console.WriteLine("Title: " + movie.Title);
             }
+            Console.WriteLine("------------------------------");
+
+        }
 
 
+        public void top3()
+        {
+            if (movies.Number > 0)
+            {
+                IMovie[] arr = movies.ToArray();
+                IMovie first = null;
+                IMovie second = null;
+                IMovie third = null;
+                //If nunmber of unique movies is more than 3
+                if (movies.Number >= 3)
+                {
+                    // All the if else below sort the first 3 movies in the array
+                    if (arr[0].NoBorrowings >= arr[1].NoBorrowings)
+                    {
+                        if (arr[0].NoBorrowings >= arr[2].NoBorrowings)
+                        {
+                            first = arr[0];
+                            if (arr[1].NoBorrowings >= arr[2].NoBorrowings)
+                            {
+                                second = arr[1];
+                                third = arr[2];
+                            }
+                            else
+                            {
+                                second = arr[2];
+                                third = arr[1];
+                            }
+                        }
+                        else
+                        {
+                            second = arr[0];
+                            first = arr[2];
+                            third = arr[1];
+                        }
+                    }
+                    else if (arr[0].NoBorrowings <= arr[2].NoBorrowings)
+                    {
+                        third = arr[0];
+                        if (arr[1].NoBorrowings >= arr[2].NoBorrowings)
+                        {
+                            first = arr[1];
+                            second = arr[2];
+                        }
+                        else
+                        {
+                            second = arr[1];
+                            first = arr[2];
+                        }
+                    }
+                    else
+                    {
+                        second = arr[0];
+                        if (arr[1].NoBorrowings >= arr[2].NoBorrowings)
+                        {
+                            first = arr[1];
+                            third = arr[2];
+                        }
+                        else
+                        {
+                            first = arr[2];
+                            third = arr[1];
+                        }
+                    }
+                    //Check the rest of the array and assign the top 3 accordingly
+                    for (int i = 3; i < arr.Length; i++)
+                    {
+                        if (arr[i].NoBorrowings >= first.NoBorrowings)
+                        {
+                            third = second;
+                            second = first;
+                            first = arr[i];
+                        }
+                        else if (arr[i].NoBorrowings >= second.NoBorrowings)
+                        {
+                            third = second;
+                            second = arr[i];
+                        }
+                        else if (arr[i].NoBorrowings >= third.NoBorrowings)
+                        {
+                            third = arr[i];
+                        }
+                    }
+                }
+                else
+                {
+                    //If theres only 2 movies in library
+                    if (movies.Number == 2)
+                    {
+                        //Do stuff
+                        if (arr[0].NoBorrowings >= arr[1].NoBorrowings)
+                        {
+                            first = arr[0];
+                            second = arr[1];
+                        }
+                        else
+                        {
+                            first = arr[1];
+                            second = arr[0];
+                        }
+                    }
+                    //If theres only one
+                    else
+                    {
+                        first = arr[0];
+                    }
+                }
+                Console.Clear();
+                Console.WriteLine("-------------Top 3 Most Borrowed Movie-------------");
+                if (first != null)
+                {
+                    Console.WriteLine("1. " + first.Title + " , borrowed " + first.NoBorrowings + " times");
+                }
+                if (second != null)
+                {
+                    Console.WriteLine("2. " + second.Title + " , borrowed " + second.NoBorrowings + " times");
+                }
+                if (third != null)
+                {
+                    Console.WriteLine("3. " + third.Title + " , borrowed " + third.NoBorrowings + " times");
+                }                
+                Console.WriteLine("---------------------------------------------------");
+            }
+            else
+            {
+                Console.Clear();
+                Console.WriteLine("No movies in library...");
+            }        
         }
     }
 }
