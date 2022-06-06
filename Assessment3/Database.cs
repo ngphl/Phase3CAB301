@@ -337,7 +337,7 @@ namespace Assessment3
                 if (validNumber)
                 {
                     //ASK FOR PIN
-                    Console.WriteLine("Pin?");
+                    Console.WriteLine("Pin? Please enter digits between 4-6");
                     string pin = Console.ReadLine();
                     Console.WriteLine("");
                     bool validPin = IMember.IsValidPin(pin);
