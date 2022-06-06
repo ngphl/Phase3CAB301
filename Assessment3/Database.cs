@@ -498,6 +498,7 @@ namespace Assessment3
                 if (counter == 0)
                 {
                     members.Delete(toFind);
+                    Console.WriteLine("Successfully removed member from the system");
                 }
                 else
                 {
