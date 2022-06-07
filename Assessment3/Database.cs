@@ -156,7 +156,7 @@ namespace Assessment3
             //Choose movie title 
             Console.WriteLine("Title of Movie: ");
             string title = Console.ReadLine();
-            if (title != "")
+            if (!String.IsNullOrEmpty(title) && !String.IsNullOrWhiteSpace(title))
             {
                 //Variable to check if any selection is invalid (e.g duration must be integer)
                 bool option = true;
@@ -325,12 +325,12 @@ namespace Assessment3
             Console.WriteLine("NOTE: Name is Case sensitive (e.g John is different from john), please add with caution.");
             Console.WriteLine("First Name?");
             string first = Console.ReadLine();
-            if (first != "")
+            if (!String.IsNullOrEmpty(first) && !String.IsNullOrWhiteSpace(first))
             {
                 Console.WriteLine("");
                 Console.WriteLine("Last Name?");
                 string last = Console.ReadLine();
-                if (last != "")
+                if (!String.IsNullOrEmpty(last) && !String.IsNullOrWhiteSpace(last))
                 {
                     Console.WriteLine("");
                     Member onlyName = new Member(first, last);
