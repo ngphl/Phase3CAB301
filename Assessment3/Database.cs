@@ -404,13 +404,13 @@ namespace Assessment3
             if (toFind == null)
             {
                 Console.Clear();
-                Console.WriteLine("Can not find member with the name, back to menu...");
+                Console.WriteLine("Cannot find member with the name, back to menu...");
             }
             else
             {
                 Console.Clear();
                 string number = toFind.ContactNumber;
-                Console.WriteLine("Contact Number for the input name: " + number);
+                Console.WriteLine("Contact Number for " + first +" "+ last + " is: " + number);
             }
         }
 
