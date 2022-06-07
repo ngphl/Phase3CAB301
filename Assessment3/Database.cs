@@ -330,14 +330,14 @@ namespace Assessment3
             else
             {
                 //ASK FOR PHONE NUMBER
-                Console.WriteLine("Phone Number?");
+                Console.WriteLine("Phone Number? (First digit must be 0 and has 10 digits)");
                 string number = Console.ReadLine();
                 Console.WriteLine("");
                 bool validNumber = IMember.IsValidContactNumber(number);
                 if (validNumber)
                 {
                     //ASK FOR PIN
-                    Console.WriteLine("Pin?");
+                    Console.WriteLine("Pin? Please enter digits between 4-6");
                     string pin = Console.ReadLine();
                     Console.WriteLine("");
                     bool validPin = IMember.IsValidPin(pin);
@@ -410,7 +410,7 @@ namespace Assessment3
             {
                 Console.Clear();
                 string number = toFind.ContactNumber;
-                Console.WriteLine("Contact Number for the input name: " + number);
+                Console.WriteLine("Contact Number for " + first +" "+ last + " is: " + number);
             }
         }
 
@@ -435,7 +435,7 @@ namespace Assessment3
                         Movie toAdd = new Movie(movieBorrow.Title);
                         member.Borrowing.Insert(toAdd);
                         Console.Clear();
-                        Console.WriteLine("Borrow successfully.");
+                        Console.WriteLine("Borrowed successfully.");
                     }
                     else if (movieBorrow.AvailableCopies < 1)
                     {
@@ -508,6 +508,7 @@ namespace Assessment3
                 if (counter == 0)
                 {
                     members.Delete(toFind);
+                    Console.WriteLine("Successfully removed member from the system");
                 }
                 else
                 {
@@ -535,7 +536,7 @@ namespace Assessment3
                 if (toFind.Borrowers.Number != 0)
                 {
                     Console.Clear();
-                    Console.WriteLine($"Members borrowing {title}:");
+                    Console.WriteLine($"Members borrowing {title}:  \n");
                     Console.WriteLine(toFind.Borrowers.ToString());
                 }
                 else
