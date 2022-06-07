@@ -125,7 +125,7 @@ namespace Assessment3
                             if (movie.TotalCopies == 0)
                             {
                                 movies.Delete(movie);
-                                Console.WriteLine("No more copies available, remove the movie " + movie.Title + " from library...");
+                                Console.WriteLine("No more copies available, remove movie " + movie.Title + " from the library...");
                             }
                             else
                             {
@@ -404,7 +404,7 @@ namespace Assessment3
             if (toFind == null)
             {
                 Console.Clear();
-                Console.WriteLine("Can not find member with the name, back to menu...");
+                Console.WriteLine("Fail to find member with that name");
             }
             else
             {
@@ -437,10 +437,20 @@ namespace Assessment3
                         Console.Clear();
                         Console.WriteLine("Borrow successfully.");
                     }
+                    else if (movieBorrow.AvailableCopies < 1)
+                    {
+                        Console.Clear();
+                        Console.WriteLine("There's no more available copies");
+                    }
+                    else if (movieBorrow.Borrowers.IsFull())
+                    {
+                        Console.Clear();
+                        Console.WriteLine("Limit of DVD borrowed for this movie is exceeded");
+                    }
                     else
                     {
                         Console.Clear();
-                        Console.WriteLine("Either there's no more available copies or the user had already borrowed 1 of this DVD");
+                        Console.WriteLine($"The {member.ToString()} had already borrowed 1 of this DVD");
                     }
                 }
                 else
@@ -524,15 +534,19 @@ namespace Assessment3
             {
                 if (toFind.Borrowers.Number != 0)
                 {
+                    Console.Clear();
+                    Console.WriteLine($"Members borrowing {title}:");
                     Console.WriteLine(toFind.Borrowers.ToString());
                 }
                 else
                 {
+                    Console.Clear();
                     Console.WriteLine("No member borrowed this movie");
                 }
             }
             else
             {
+                Console.Clear();
                 Console.WriteLine("Invalid movie title");
             }
         }
@@ -549,7 +563,7 @@ namespace Assessment3
             Movie temp = (Movie)movies.Search(title);
             if (toFind != null)
             {
-                
+
                 if (member.Borrowing.Delete(toFind) == true)
                 {
                     temp.RemoveBorrower(member);
@@ -626,14 +640,14 @@ namespace Assessment3
                 if (third != dummy)
                 {
                     Console.WriteLine("3. " + third.Title + " , borrowed " + third.NoBorrowings + " times");
-                }                
+                }
                 Console.WriteLine("---------------------------------------------------");
             }
             else
             {
                 Console.Clear();
                 Console.WriteLine("No movies in library...");
-            }        
+            }
         }
     }
 }
