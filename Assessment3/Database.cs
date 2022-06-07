@@ -525,6 +525,7 @@ namespace Assessment3
             {
                 if (toFind.Borrowers.Number != 0)
                 {
+                    Console.WriteLine($"Members borrowing {title}:  \n");
                     Console.WriteLine(toFind.Borrowers.ToString());
                 }
                 else
