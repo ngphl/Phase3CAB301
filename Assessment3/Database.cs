@@ -316,76 +316,93 @@ namespace Assessment3
             Console.WriteLine("NOTE: Name is Case sensitive (e.g John is different from john), please add with caution.");
             Console.WriteLine("First Name?");
             string first = Console.ReadLine();
-            Console.WriteLine("");
-            Console.WriteLine("Last Name?");
-            string last = Console.ReadLine();
-            Console.WriteLine("");
-            Member onlyName = new Member(first, last);
-            //CHECK IF FIRST & LAST NAME ALREADY EXIST
-            if (Members.Search(onlyName))
+            if (first != "")
             {
-                Console.Clear();
-                Console.WriteLine("There is already member with the same name, back to menu...");
-            }
-            else
-            {
-                //ASK FOR PHONE NUMBER
-                Console.WriteLine("Phone Number? (First digit must be 0 and has 10 digits)");
-                string number = Console.ReadLine();
                 Console.WriteLine("");
-                bool validNumber = IMember.IsValidContactNumber(number);
-                if (validNumber)
+                Console.WriteLine("Last Name?");
+                string last = Console.ReadLine();
+                if (last != "")
                 {
-                    //ASK FOR PIN
-                    Console.WriteLine("Pin? Please enter digits between 4-6");
-                    string pin = Console.ReadLine();
                     Console.WriteLine("");
-                    bool validPin = IMember.IsValidPin(pin);
-                    if (validPin)
+                    Member onlyName = new Member(first, last);
+                    //CHECK IF FIRST & LAST NAME ALREADY EXIST
+                    if (Members.Search(onlyName))
                     {
-                        //VERIFY DETAIL AND ADD MEMBER
-                        Member member = new Member(first, last, number, pin);
-                        while (true)
+                        Console.Clear();
+                        Console.WriteLine("There is already member with the same name, back to menu...");
+                    }
+                    else
+                    {
+                        //ASK FOR PHONE NUMBER
+                        Console.WriteLine("Phone Number? (First digit must be 0 and has 10 digits)");
+                        string number = Console.ReadLine();
+                        Console.WriteLine("");
+                        bool validNumber = IMember.IsValidContactNumber(number);
+                        if (validNumber)
                         {
-                            Console.Clear();
-                            Console.WriteLine("Verify Member Detail");
-                            displayMemberInfo(member);
-                            Console.WriteLine("\nRegister this member? (Y/N)");
-                            string yesNo = Console.ReadLine();
-                            yesNo = yesNo.ToUpper();
-                            if (yesNo == "Y")
+                            //ASK FOR PIN
+                            Console.WriteLine("Pin? Please enter digits between 4-6");
+                            string pin = Console.ReadLine();
+                            Console.WriteLine("");
+                            bool validPin = IMember.IsValidPin(pin);
+                            if (validPin)
                             {
-                                Members.Add(member);
-                                Console.Clear();
-                                Console.WriteLine("Successfully Register member with following detail:");
-                                displayMemberInfo(member);
-                                break;
-                            }
-                            else if (yesNo == "N")
-                            {
-                                Console.Clear();
-                                Console.WriteLine("Back to menu...");
-                                break;
+                                //VERIFY DETAIL AND ADD MEMBER
+                                Member member = new Member(first, last, number, pin);
+                                while (true)
+                                {
+                                    Console.Clear();
+                                    Console.WriteLine("Verify Member Detail");
+                                    displayMemberInfo(member);
+                                    Console.WriteLine("\nRegister this member? (Y/N)");
+                                    string yesNo = Console.ReadLine();
+                                    yesNo = yesNo.ToUpper();
+                                    if (yesNo == "Y")
+                                    {
+                                        Members.Add(member);
+                                        Console.Clear();
+                                        Console.WriteLine("Successfully Register member with following detail:");
+                                        displayMemberInfo(member);
+                                        break;
+                                    }
+                                    else if (yesNo == "N")
+                                    {
+                                        Console.Clear();
+                                        Console.WriteLine("Back to menu...");
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        Console.Clear();
+                                        Console.WriteLine("Invalid option, try again");
+                                    }
+                                }
                             }
                             else
                             {
                                 Console.Clear();
-                                Console.WriteLine("Invalid option, try again");
+                                Console.WriteLine("Invalid PIN, back to menu...");
                             }
                         }
-                    }
-                    else
-                    {
-                        Console.Clear();
-                        Console.WriteLine("Invalid PIN, back to menu...");
+                        else
+                        {
+                            Console.Clear();
+                            Console.WriteLine("Invalid Phone Number, back to menu...");
+                        }
                     }
                 }
                 else
                 {
                     Console.Clear();
-                    Console.WriteLine("Invalid Phone Number, back to menu...");
-                }
+                    Console.WriteLine("Name can't be empty");
+                }        
             }
+            else
+            {
+                Console.Clear();
+                Console.WriteLine("Name can't be empty");
+            }
+
         }
 
         //Find a member contact number

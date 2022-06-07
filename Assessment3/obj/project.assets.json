@@ -8,19 +8,19 @@
     "net6.0": []
   },
   "packageFolders": {
-    "C:\\Users\\user\\.nuget\\packages\\": {}
+    "C:\\Users\\Phi Long\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\user\\source\\repos\\Phase3CAB301\\New folder (4)\\Assessment3\\Assessment3.csproj",
+      "projectUniqueName": "C:\\Users\\Phi Long\\Desktop\\CAB301\\ProjectPhase3\\Assessment3\\Assessment3.csproj",
       "projectName": "Assessment3",
-      "projectPath": "C:\\Users\\user\\source\\repos\\Phase3CAB301\\New folder (4)\\Assessment3\\Assessment3.csproj",
-      "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\user\\source\\repos\\Phase3CAB301\\New folder (4)\\Assessment3\\obj\\",
+      "projectPath": "C:\\Users\\Phi Long\\Desktop\\CAB301\\ProjectPhase3\\Assessment3\\Assessment3.csproj",
+      "packagesPath": "C:\\Users\\Phi Long\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Phi Long\\Desktop\\CAB301\\ProjectPhase3\\Assessment3\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Phi Long\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -60,7 +60,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
       }
     }
   }
