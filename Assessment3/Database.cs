@@ -330,7 +330,7 @@ namespace Assessment3
             else
             {
                 //ASK FOR PHONE NUMBER
-                Console.WriteLine("Phone Number?");
+                Console.WriteLine("Phone Number? (First digit must be 0 and has 10 digits)");
                 string number = Console.ReadLine();
                 Console.WriteLine("");
                 bool validNumber = IMember.IsValidContactNumber(number);
