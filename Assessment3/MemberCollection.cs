@@ -215,8 +215,9 @@ class MemberCollection : IMemberCollection
     public string ToString()
     {
         string s = "";
+        string d = " ";
         for (int i = 0; i < count; i++)
-            s = (i + 1) + ")" +  " " + s + members[i].ToString() + "\n";
+            s =  s + members[i].ToString() + "\n";
         return s;
     }
 

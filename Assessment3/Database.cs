@@ -85,6 +85,7 @@ namespace Assessment3
         public void RemoveDvD()
         {
             Console.Clear();
+            displayAllMovie();
             //Choose movie title 
             Console.WriteLine("Title of Movie: ");
             string title = Console.ReadLine();
@@ -124,7 +125,7 @@ namespace Assessment3
                             if (movie.TotalCopies == 0)
                             {
                                 movies.Delete(movie);
-                                Console.WriteLine("No more copies available, remove the movie " + movie.Title + " from library...");
+                                Console.WriteLine("No more copies available, remove movie " + movie.Title + " from the library...");
                             }
                             else
                             {
@@ -315,8 +316,10 @@ namespace Assessment3
             Console.WriteLine("NOTE: Name is Case sensitive (e.g John is different from john), please add with caution.");
             Console.WriteLine("First Name?");
             string first = Console.ReadLine();
+            Console.WriteLine("");
             Console.WriteLine("Last Name?");
             string last = Console.ReadLine();
+            Console.WriteLine("");
             Member onlyName = new Member(first, last);
             //CHECK IF FIRST & LAST NAME ALREADY EXIST
             if (Members.Search(onlyName))
@@ -327,14 +330,16 @@ namespace Assessment3
             else
             {
                 //ASK FOR PHONE NUMBER
-                Console.WriteLine("Phone Number?");
+                Console.WriteLine("Phone Number? (First digit must be 0 and has 10 digits)");
                 string number = Console.ReadLine();
+                Console.WriteLine("");
                 bool validNumber = IMember.IsValidContactNumber(number);
                 if (validNumber)
                 {
                     //ASK FOR PIN
-                    Console.WriteLine("Pin?");
+                    Console.WriteLine("Pin? Please enter digits between 4-6");
                     string pin = Console.ReadLine();
+                    Console.WriteLine("");
                     bool validPin = IMember.IsValidPin(pin);
                     if (validPin)
                     {
@@ -387,6 +392,7 @@ namespace Assessment3
         public void FindNumber()
         {
             Console.Clear();
+            displayAllMember();
             //Ask for name
             Console.WriteLine("First Name?");
             string first = Console.ReadLine();
@@ -398,13 +404,13 @@ namespace Assessment3
             if (toFind == null)
             {
                 Console.Clear();
-                Console.WriteLine("Can not find member with the name, back to menu...");
+                Console.WriteLine("Fail to find member with that name");
             }
             else
             {
                 Console.Clear();
                 string number = toFind.ContactNumber;
-                Console.WriteLine("Contact Number for the input name: " + number);
+                Console.WriteLine("Contact Number for " + first +" "+ last + " is: " + number);
             }
         }
 
@@ -429,12 +435,22 @@ namespace Assessment3
                         Movie toAdd = new Movie(movieBorrow.Title);
                         member.Borrowing.Insert(toAdd);
                         Console.Clear();
-                        Console.WriteLine("Borrow successfully.");
+                        Console.WriteLine("Borrowed successfully.");
+                    }
+                    else if (movieBorrow.AvailableCopies < 1)
+                    {
+                        Console.Clear();
+                        Console.WriteLine("There's no more available copies");
+                    }
+                    else if (movieBorrow.Borrowers.IsFull())
+                    {
+                        Console.Clear();
+                        Console.WriteLine("Limit of DVD borrowed for this movie is exceeded");
                     }
                     else
                     {
                         Console.Clear();
-                        Console.WriteLine("Either there's no more available copies or the user had already borrowed 1 of this DVD");
+                        Console.WriteLine($"The {member.ToString()} had already borrowed 1 of this DVD");
                     }
                 }
                 else
@@ -470,6 +486,7 @@ namespace Assessment3
         public void removeMember()
         {
             Console.Clear();
+            displayAllMember();
             Console.WriteLine("First Name?");
             string first = Console.ReadLine();
             Console.WriteLine("Last Name?");
@@ -491,6 +508,7 @@ namespace Assessment3
                 if (counter == 0)
                 {
                     members.Delete(toFind);
+                    Console.WriteLine("Successfully removed member from the system");
                 }
                 else
                 {
@@ -517,15 +535,19 @@ namespace Assessment3
             {
                 if (toFind.Borrowers.Number != 0)
                 {
+                    Console.Clear();
+                    Console.WriteLine($"Members borrowing {title}:  \n");
                     Console.WriteLine(toFind.Borrowers.ToString());
                 }
                 else
                 {
+                    Console.Clear();
                     Console.WriteLine("No member borrowed this movie");
                 }
             }
             else
             {
+                Console.Clear();
                 Console.WriteLine("Invalid movie title");
             }
         }
@@ -542,7 +564,7 @@ namespace Assessment3
             Movie temp = (Movie)movies.Search(title);
             if (toFind != null)
             {
-                
+
                 if (member.Borrowing.Delete(toFind) == true)
                 {
                     temp.RemoveBorrower(member);
@@ -619,14 +641,14 @@ namespace Assessment3
                 if (third != dummy)
                 {
                     Console.WriteLine("3. " + third.Title + " , borrowed " + third.NoBorrowings + " times");
-                }                
+                }
                 Console.WriteLine("---------------------------------------------------");
             }
             else
             {
                 Console.Clear();
                 Console.WriteLine("No movies in library...");
-            }        
+            }
         }
     }
 }
