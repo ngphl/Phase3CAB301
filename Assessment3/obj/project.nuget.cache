@@ -1,14 +1,15 @@
 {
   "version": 2,
-<<<<<<< HEAD
   "dgSpecHash": "LIbjcFOLRXeuzgG1nOMT8d1EZYAFUX6Rh4Ot5KkYjJSQieJVMif1FBtLbZQNut/voIDTAG0pxP6bP19bck9bqg==",
   "success": true,
   "projectFilePath": "C:\\Users\\User\\OneDrive - Queensland University of Technology\\Qut\\year 2 sem 2\\CAB301\\Back up A3\\Assessment3\\Assessment3.csproj",
-=======
-  "dgSpecHash": "Cg+r49LdxXPmwjbrlq6K80gMEJlP5/fMOZuBV+Y95CgSsX1C4ZpgUov7BMNDIobhQmTWlu5lHn3OPbEjDUuAHA==",
-  "success": true,
-  "projectFilePath": "C:\\Users\\Phi Long\\Desktop\\CAB301\\ProjectPhase3\\Assessment3\\Assessment3.csproj",
->>>>>>> f9de863d9f92588bf6deb4593e5b44cec66151a3
   "expectedPackageFiles": [],
-  "logs": []
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file C:\\Users\\User\\OneDrive - Queensland University of Technology\\Qut\\year 2 sem 2\\CAB301\\Back up A3\\Assessment3\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }

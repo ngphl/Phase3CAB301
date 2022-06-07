@@ -8,16 +8,11 @@
     "net6.0": []
   },
   "packageFolders": {
-<<<<<<< HEAD
     "C:\\Users\\User\\.nuget\\packages\\": {}
-=======
-    "C:\\Users\\Phi Long\\.nuget\\packages\\": {}
->>>>>>> f9de863d9f92588bf6deb4593e5b44cec66151a3
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-<<<<<<< HEAD
       "projectUniqueName": "C:\\Users\\User\\OneDrive - Queensland University of Technology\\Qut\\year 2 sem 2\\CAB301\\Back up A3\\Assessment3\\Assessment3.csproj",
       "projectName": "Assessment3",
       "projectPath": "C:\\Users\\User\\OneDrive - Queensland University of Technology\\Qut\\year 2 sem 2\\CAB301\\Back up A3\\Assessment3\\Assessment3.csproj",
@@ -26,16 +21,6 @@
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
-=======
-      "projectUniqueName": "C:\\Users\\Phi Long\\Desktop\\CAB301\\ProjectPhase3\\Assessment3\\Assessment3.csproj",
-      "projectName": "Assessment3",
-      "projectPath": "C:\\Users\\Phi Long\\Desktop\\CAB301\\ProjectPhase3\\Assessment3\\Assessment3.csproj",
-      "packagesPath": "C:\\Users\\Phi Long\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Phi Long\\Desktop\\CAB301\\ProjectPhase3\\Assessment3\\obj\\",
-      "projectStyle": "PackageReference",
-      "configFilePaths": [
-        "C:\\Users\\Phi Long\\AppData\\Roaming\\NuGet\\NuGet.Config",
->>>>>>> f9de863d9f92588bf6deb4593e5b44cec66151a3
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -78,5 +63,13 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file C:\\Users\\User\\OneDrive - Queensland University of Technology\\Qut\\year 2 sem 2\\CAB301\\Back up A3\\Assessment3\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }
