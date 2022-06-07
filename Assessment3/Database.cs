@@ -435,7 +435,7 @@ namespace Assessment3
                         Movie toAdd = new Movie(movieBorrow.Title);
                         member.Borrowing.Insert(toAdd);
                         Console.Clear();
-                        Console.WriteLine("Borrow successfully.");
+                        Console.WriteLine("Borrowed successfully.");
                     }
                     else
                     {
