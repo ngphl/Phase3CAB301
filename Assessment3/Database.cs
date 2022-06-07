@@ -156,156 +156,165 @@ namespace Assessment3
             //Choose movie title 
             Console.WriteLine("Title of Movie: ");
             string title = Console.ReadLine();
-            //Variable to check if any selection is invalid (e.g duration must be integer)
-            bool option = true;
-            while (option)
+            if (!String.IsNullOrEmpty(title) && !String.IsNullOrWhiteSpace(title))
             {
-                //CHOOSING GENRE - START
-                Console.WriteLine();
-                Console.WriteLine("Select Genre by Number: ");
-                Console.WriteLine("1. Action");
-                Console.WriteLine("2. Comedy");
-                Console.WriteLine("3. History");
-                Console.WriteLine("4. Drama");
-                Console.WriteLine("5. Western");
-                string genre = Console.ReadLine();
-                option = int.TryParse(genre, out int genreInt);
-                MovieGenre genreChoose;
-                if (genreInt == 1)
+                //Variable to check if any selection is invalid (e.g duration must be integer)
+                bool option = true;
+                while (option)
                 {
-                    genreChoose = MovieGenre.Action;
-                }
-                else if (genreInt == 2)
-                {
-                    genreChoose = MovieGenre.Comedy;
-                }
-                else if (genreInt == 3)
-                {
-                    genreChoose = MovieGenre.History;
-                }
-                else if (genreInt == 4)
-                {
-                    genreChoose = MovieGenre.Drama;
-                }
-                else if (genreInt == 5)
-                {
-                    genreChoose = MovieGenre.Western;
-                }
-                else
-                {
-                    option = false;
-                    break;
-                }
-                //CHOOSING GENRE - END
-                //CHOOSING CLASSIFICATION - START
-                Console.WriteLine();
-                Console.WriteLine("Select Movie Classification by Number:");
-                Console.WriteLine("1. General (G)");
-                Console.WriteLine("2. Parental Guidance (PG)");
-                Console.WriteLine("3. Mature (M)");
-                Console.WriteLine("4. Mature Accompanied (MA15+)");
-                string classify = Console.ReadLine();
-                option = int.TryParse(classify, out int classifyInt);
-                MovieClassification classification;
-                if (classifyInt == 1)
-                {
-                    classification = MovieClassification.G;
-                }
-                else if (classifyInt == 2)
-                {
-                    classification = MovieClassification.PG;
-                }
-                else if (classifyInt == 3)
-                {
-                    classification = MovieClassification.M;
-                }
-                else if (classifyInt == 4)
-                {
-                    classification = MovieClassification.M15Plus;
-                }
-                else
-                {
-                    option = false;
-                    break;
-                }
-                //CHOOSING CLASSIFICATION - END
-                //CHOOSING DURATION - START
-                Console.WriteLine();
-                Console.WriteLine("Duration of Movie:");
-                string duration = Console.ReadLine();
-                option = int.TryParse(duration, out int durationInt);
-                if (!option)
-                {
-                    break;
-                }
-                //CHOOSING DURATION - END
-                //CHOOSE NUMBER OF DVD TO ADD - START
-                Console.WriteLine();
-                Console.WriteLine("Number of DVD to add:");
-                string toAdd = Console.ReadLine();
-                option = int.TryParse(toAdd, out int numberToAdd);
-                if (!option)
-                {
-                    break;
-                }
-                //CHOOSE NUMBER OF DVD TO ADD - END
-
-                while (true)
-                {
-                    //OFFICIALLY ADD IN THE MOVIE 
-                    Console.Clear();
-                    Console.WriteLine("Verify Movie Detail");
-                    Console.WriteLine("Title: " + title + "");
-                    Console.WriteLine("Genre: " + genreChoose + "");
-                    Console.WriteLine("Classification: " + classification + "");
-                    Console.WriteLine("Duration: " + durationInt + "");
-                    Console.WriteLine("Number of DvD: " + numberToAdd + "");
-                    Console.WriteLine("\nAdd this movie in? (Y/N)");
-                    string yesNo = Console.ReadLine();
-                    yesNo = yesNo.ToUpper();
-                    if (yesNo == "Y")
+                    //CHOOSING GENRE - START
+                    Console.WriteLine();
+                    Console.WriteLine("Select Genre by Number: ");
+                    Console.WriteLine("1. Action");
+                    Console.WriteLine("2. Comedy");
+                    Console.WriteLine("3. History");
+                    Console.WriteLine("4. Drama");
+                    Console.WriteLine("5. Western");
+                    string genre = Console.ReadLine();
+                    option = int.TryParse(genre, out int genreInt);
+                    MovieGenre genreChoose;
+                    if (genreInt == 1)
                     {
-                        //Add
-                        Movie movie = new Movie(title, genreChoose, classification, durationInt, numberToAdd);
-                        bool added = movies.Insert(movie);
-                        if (added)
+                        genreChoose = MovieGenre.Action;
+                    }
+                    else if (genreInt == 2)
+                    {
+                        genreChoose = MovieGenre.Comedy;
+                    }
+                    else if (genreInt == 3)
+                    {
+                        genreChoose = MovieGenre.History;
+                    }
+                    else if (genreInt == 4)
+                    {
+                        genreChoose = MovieGenre.Drama;
+                    }
+                    else if (genreInt == 5)
+                    {
+                        genreChoose = MovieGenre.Western;
+                    }
+                    else
+                    {
+                        option = false;
+                        break;
+                    }
+                    //CHOOSING GENRE - END
+                    //CHOOSING CLASSIFICATION - START
+                    Console.WriteLine();
+                    Console.WriteLine("Select Movie Classification by Number:");
+                    Console.WriteLine("1. General (G)");
+                    Console.WriteLine("2. Parental Guidance (PG)");
+                    Console.WriteLine("3. Mature (M)");
+                    Console.WriteLine("4. Mature Accompanied (MA15+)");
+                    string classify = Console.ReadLine();
+                    option = int.TryParse(classify, out int classifyInt);
+                    MovieClassification classification;
+                    if (classifyInt == 1)
+                    {
+                        classification = MovieClassification.G;
+                    }
+                    else if (classifyInt == 2)
+                    {
+                        classification = MovieClassification.PG;
+                    }
+                    else if (classifyInt == 3)
+                    {
+                        classification = MovieClassification.M;
+                    }
+                    else if (classifyInt == 4)
+                    {
+                        classification = MovieClassification.M15Plus;
+                    }
+                    else
+                    {
+                        option = false;
+                        break;
+                    }
+                    //CHOOSING CLASSIFICATION - END
+                    //CHOOSING DURATION - START
+                    Console.WriteLine();
+                    Console.WriteLine("Duration of Movie:");
+                    string duration = Console.ReadLine();
+                    option = int.TryParse(duration, out int durationInt);
+                    if (!option)
+                    {
+                        break;
+                    }
+                    //CHOOSING DURATION - END
+                    //CHOOSE NUMBER OF DVD TO ADD - START
+                    Console.WriteLine();
+                    Console.WriteLine("Number of DVD to add:");
+                    string toAdd = Console.ReadLine();
+                    option = int.TryParse(toAdd, out int numberToAdd);
+                    if (!option)
+                    {
+                        break;
+                    }
+                    //CHOOSE NUMBER OF DVD TO ADD - END
+
+                    while (true)
+                    {
+                        //OFFICIALLY ADD IN THE MOVIE 
+                        Console.Clear();
+                        Console.WriteLine("Verify Movie Detail");
+                        Console.WriteLine("Title: " + title + "");
+                        Console.WriteLine("Genre: " + genreChoose + "");
+                        Console.WriteLine("Classification: " + classification + "");
+                        Console.WriteLine("Duration: " + durationInt + "");
+                        Console.WriteLine("Number of DvD: " + numberToAdd + "");
+                        Console.WriteLine("\nAdd this movie in? (Y/N)");
+                        string yesNo = Console.ReadLine();
+                        yesNo = yesNo.ToUpper();
+                        if (yesNo == "Y")
+                        {
+                            //Add
+                            Movie movie = new Movie(title, genreChoose, classification, durationInt, numberToAdd);
+                            bool added = movies.Insert(movie);
+                            if (added)
+                            {
+                                Console.Clear();
+                                Console.WriteLine("Movie successfully added, back to menu...");
+                                displayInfo(movie);
+                                break;
+                            }
+                            else
+                            {
+                                movie = (Movie)movies.Search(title);
+                                movie.TotalCopies += numberToAdd;
+                                movie.AvailableCopies += numberToAdd;
+                                Console.Clear();
+                                Console.WriteLine("Movies already in library, added " + numberToAdd + " DvD instead");
+                                Console.WriteLine("Update!");
+                                displayInfo(movie);
+                                break;
+                            }
+                        }
+                        else if (yesNo == "N")
                         {
                             Console.Clear();
-                            Console.WriteLine("Movie successfully added, back to menu...");
-                            displayInfo(movie);
+                            Console.WriteLine("Back to menu...");
                             break;
                         }
                         else
                         {
-                            movie = (Movie)movies.Search(title);
-                            movie.TotalCopies += numberToAdd;
-                            movie.AvailableCopies += numberToAdd;
                             Console.Clear();
-                            Console.WriteLine("Movies already in library, added " + numberToAdd + " DvD instead");
-                            Console.WriteLine("Update!");
-                            displayInfo(movie);
-                            break;
+                            Console.WriteLine("Invalid option, try again");
                         }
                     }
-                    else if (yesNo == "N")
-                    {
-                        Console.Clear();
-                        Console.WriteLine("Back to menu...");
-                        break;
-                    }
-                    else
-                    {
-                        Console.Clear();
-                        Console.WriteLine("Invalid option, try again");
-                    }
+                    break;
                 }
-                break;
+                if (!option)
+                {
+                    Console.Clear();
+                    Console.WriteLine("Invalid selection, back to menu...");
+                }
             }
-            if (!option)
+            else
             {
                 Console.Clear();
-                Console.WriteLine("Invalid selection, back to menu...");
+                Console.WriteLine("Name can't be empty");
             }
+            
         }
 
         //Register a member 
@@ -316,76 +325,93 @@ namespace Assessment3
             Console.WriteLine("NOTE: Name is Case sensitive (e.g John is different from john), please add with caution.");
             Console.WriteLine("First Name?");
             string first = Console.ReadLine();
-            Console.WriteLine("");
-            Console.WriteLine("Last Name?");
-            string last = Console.ReadLine();
-            Console.WriteLine("");
-            Member onlyName = new Member(first, last);
-            //CHECK IF FIRST & LAST NAME ALREADY EXIST
-            if (Members.Search(onlyName))
+            if (!String.IsNullOrEmpty(first) && !String.IsNullOrWhiteSpace(first))
             {
-                Console.Clear();
-                Console.WriteLine("There is already member with the same name, back to menu...");
-            }
-            else
-            {
-                //ASK FOR PHONE NUMBER
-                Console.WriteLine("Phone Number? (First digit must be 0 and has 10 digits)");
-                string number = Console.ReadLine();
                 Console.WriteLine("");
-                bool validNumber = IMember.IsValidContactNumber(number);
-                if (validNumber)
+                Console.WriteLine("Last Name?");
+                string last = Console.ReadLine();
+                if (!String.IsNullOrEmpty(last) && !String.IsNullOrWhiteSpace(last))
                 {
-                    //ASK FOR PIN
-                    Console.WriteLine("Pin? Please enter digits between 4-6");
-                    string pin = Console.ReadLine();
                     Console.WriteLine("");
-                    bool validPin = IMember.IsValidPin(pin);
-                    if (validPin)
+                    Member onlyName = new Member(first, last);
+                    //CHECK IF FIRST & LAST NAME ALREADY EXIST
+                    if (Members.Search(onlyName))
                     {
-                        //VERIFY DETAIL AND ADD MEMBER
-                        Member member = new Member(first, last, number, pin);
-                        while (true)
+                        Console.Clear();
+                        Console.WriteLine("There is already member with the same name, back to menu...");
+                    }
+                    else
+                    {
+                        //ASK FOR PHONE NUMBER
+                        Console.WriteLine("Phone Number? (First digit must be 0 and has 10 digits)");
+                        string number = Console.ReadLine();
+                        Console.WriteLine("");
+                        bool validNumber = IMember.IsValidContactNumber(number);
+                        if (validNumber)
                         {
-                            Console.Clear();
-                            Console.WriteLine("Verify Member Detail");
-                            displayMemberInfo(member);
-                            Console.WriteLine("\nRegister this member? (Y/N)");
-                            string yesNo = Console.ReadLine();
-                            yesNo = yesNo.ToUpper();
-                            if (yesNo == "Y")
+                            //ASK FOR PIN
+                            Console.WriteLine("Pin? Please enter digits between 4-6");
+                            string pin = Console.ReadLine();
+                            Console.WriteLine("");
+                            bool validPin = IMember.IsValidPin(pin);
+                            if (validPin)
                             {
-                                Members.Add(member);
-                                Console.Clear();
-                                Console.WriteLine("Successfully Register member with following detail:");
-                                displayMemberInfo(member);
-                                break;
-                            }
-                            else if (yesNo == "N")
-                            {
-                                Console.Clear();
-                                Console.WriteLine("Back to menu...");
-                                break;
+                                //VERIFY DETAIL AND ADD MEMBER
+                                Member member = new Member(first, last, number, pin);
+                                while (true)
+                                {
+                                    Console.Clear();
+                                    Console.WriteLine("Verify Member Detail");
+                                    displayMemberInfo(member);
+                                    Console.WriteLine("\nRegister this member? (Y/N)");
+                                    string yesNo = Console.ReadLine();
+                                    yesNo = yesNo.ToUpper();
+                                    if (yesNo == "Y")
+                                    {
+                                        Members.Add(member);
+                                        Console.Clear();
+                                        Console.WriteLine("Successfully Register member with following detail:");
+                                        displayMemberInfo(member);
+                                        break;
+                                    }
+                                    else if (yesNo == "N")
+                                    {
+                                        Console.Clear();
+                                        Console.WriteLine("Back to menu...");
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        Console.Clear();
+                                        Console.WriteLine("Invalid option, try again");
+                                    }
+                                }
                             }
                             else
                             {
                                 Console.Clear();
-                                Console.WriteLine("Invalid option, try again");
+                                Console.WriteLine("Invalid PIN, back to menu...");
                             }
                         }
-                    }
-                    else
-                    {
-                        Console.Clear();
-                        Console.WriteLine("Invalid PIN, back to menu...");
+                        else
+                        {
+                            Console.Clear();
+                            Console.WriteLine("Invalid Phone Number, back to menu...");
+                        }
                     }
                 }
                 else
                 {
                     Console.Clear();
-                    Console.WriteLine("Invalid Phone Number, back to menu...");
-                }
+                    Console.WriteLine("Name can't be empty");
+                }        
             }
+            else
+            {
+                Console.Clear();
+                Console.WriteLine("Name can't be empty");
+            }
+
         }
 
         //Find a member contact number
