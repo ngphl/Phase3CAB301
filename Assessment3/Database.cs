@@ -308,13 +308,13 @@ namespace Assessment3
                         else
                         {
                             Console.Clear();
-                            Console.WriteLine("Can't be negative");
+                            Console.WriteLine("Invalid Amount");
                         }
                     }
                     else
                     {
                         Console.Clear();
-                        Console.WriteLine("Can't be negative");
+                        Console.WriteLine("Invalid Amount");
                     }             
                     break;
                 }
