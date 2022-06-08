@@ -80,8 +80,10 @@ namespace Assessment3
             //Check First & Last Name
             Console.WriteLine("First Name: ");
             string first = Console.ReadLine();
+            Console.WriteLine("");
             Console.WriteLine("Last Name: ");
             string last = Console.ReadLine();
+            Console.WriteLine("");
             Member checkMember = new Member(first, last);
             //Check if its in data
             checkMember = (Member)libraryData.Members.Find(checkMember);
@@ -89,6 +91,7 @@ namespace Assessment3
             {
                 Console.WriteLine("Password: ");
                 string pass = Console.ReadLine();
+                Console.WriteLine("");
                 if (pass == checkMember.Pin)
                 {
                     Console.Clear();
@@ -185,8 +188,10 @@ namespace Assessment3
             Console.Clear();
             Console.WriteLine("Username: ");
             string username = Console.ReadLine();
+            Console.WriteLine("");
             Console.WriteLine("Password: ");
             string password = Console.ReadLine();
+            Console.WriteLine("");
             if (username == "staff" && password == "today123")
             {
                 Console.Clear();
