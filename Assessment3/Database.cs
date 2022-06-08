@@ -240,67 +240,82 @@ namespace Assessment3
                     {
                         break;
                     }
-                    //CHOOSING DURATION - END
-                    //CHOOSE NUMBER OF DVD TO ADD - START
-                    Console.WriteLine();
-                    Console.WriteLine("Number of DVD to add:");
-                    string toAdd = Console.ReadLine();
-                    option = int.TryParse(toAdd, out int numberToAdd);
-                    if (!option)
+                    if (durationInt > 0)
                     {
-                        break;
-                    }
-                    //CHOOSE NUMBER OF DVD TO ADD - END
-
-                    while (true)
-                    {
-                        //OFFICIALLY ADD IN THE MOVIE 
-                        Console.Clear();
-                        Console.WriteLine("Verify Movie Detail");
-                        Console.WriteLine("Title: " + title + "");
-                        Console.WriteLine("Genre: " + genreChoose + "");
-                        Console.WriteLine("Classification: " + classification + "");
-                        Console.WriteLine("Duration: " + durationInt + "");
-                        Console.WriteLine("Number of DvD: " + numberToAdd + "");
-                        Console.WriteLine("\nAdd this movie in? (Y/N)");
-                        string yesNo = Console.ReadLine();
-                        yesNo = yesNo.ToUpper();
-                        if (yesNo == "Y")
+                        //CHOOSING DURATION - END
+                        //CHOOSE NUMBER OF DVD TO ADD - START
+                        Console.WriteLine();
+                        Console.WriteLine("Number of DVD to add:");
+                        string toAdd = Console.ReadLine();
+                        option = int.TryParse(toAdd, out int numberToAdd);
+                        if (!option)
                         {
-                            //Add
-                            Movie movie = new Movie(title, genreChoose, classification, durationInt, numberToAdd);
-                            bool added = movies.Insert(movie);
-                            if (added)
-                            {
-                                Console.Clear();
-                                Console.WriteLine("Movie successfully added, back to menu...");
-                                displayInfo(movie);
-                                break;
-                            }
-                            else
-                            {
-                                movie = (Movie)movies.Search(title);
-                                movie.TotalCopies += numberToAdd;
-                                movie.AvailableCopies += numberToAdd;
-                                Console.Clear();
-                                Console.WriteLine("Movies already in library, added " + numberToAdd + " DvD instead");
-                                Console.WriteLine("Update!");
-                                displayInfo(movie);
-                                break;
-                            }
-                        }
-                        else if (yesNo == "N")
-                        {
-                            Console.Clear();
-                            Console.WriteLine("Back to menu...");
                             break;
+                        }
+                        //CHOOSE NUMBER OF DVD TO ADD - END
+                        if (numberToAdd > 0)
+                        {
+                            while (true)
+                            {
+                                //OFFICIALLY ADD IN THE MOVIE 
+                                Console.Clear();
+                                Console.WriteLine("Verify Movie Detail");
+                                Console.WriteLine("Title: " + title + "");
+                                Console.WriteLine("Genre: " + genreChoose + "");
+                                Console.WriteLine("Classification: " + classification + "");
+                                Console.WriteLine("Duration: " + durationInt + "");
+                                Console.WriteLine("Number of DvD: " + numberToAdd + "");
+                                Console.WriteLine("\nAdd this movie in? (Y/N)");
+                                string yesNo = Console.ReadLine();
+                                yesNo = yesNo.ToUpper();
+                                if (yesNo == "Y")
+                                {
+                                    //Add
+                                    Movie movie = new Movie(title, genreChoose, classification, durationInt, numberToAdd);
+                                    bool added = movies.Insert(movie);
+                                    if (added)
+                                    {
+                                        Console.Clear();
+                                        Console.WriteLine("Movie successfully added, back to menu...");
+                                        displayInfo(movie);
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        movie = (Movie)movies.Search(title);
+                                        movie.TotalCopies += numberToAdd;
+                                        movie.AvailableCopies += numberToAdd;
+                                        Console.Clear();
+                                        Console.WriteLine("Movies already in library, added " + numberToAdd + " DvD instead");
+                                        Console.WriteLine("Update!");
+                                        displayInfo(movie);
+                                        break;
+                                    }
+                                }
+                                else if (yesNo == "N")
+                                {
+                                    Console.Clear();
+                                    Console.WriteLine("Back to menu...");
+                                    break;
+                                }
+                                else
+                                {
+                                    Console.Clear();
+                                    Console.WriteLine("Invalid option, try again");
+                                }
+                            }
                         }
                         else
                         {
                             Console.Clear();
-                            Console.WriteLine("Invalid option, try again");
+                            Console.WriteLine("Can't be negative");
                         }
                     }
+                    else
+                    {
+                        Console.Clear();
+                        Console.WriteLine("Can't be negative");
+                    }             
                     break;
                 }
                 if (!option)
